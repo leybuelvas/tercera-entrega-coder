@@ -1,0 +1,102 @@
+<head>
+  <meta charset="UTF-8" />
+  <title>App de Productos</title>
+
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/materia/bootstrap.min.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    crossorigin="anonymous"
+  />
+</head>
+<body>
+  <div class="card-body">
+          <form action="http://localhost:8081/carrito" method="get">  
+              <button class="btn btn-primary btn-block" type="submit">
+                Carrito
+              </button>
+            </div>
+          </form>
+  <div class="col-md-4 mx-auto">
+    <div class="card text-center">
+      <div class="card-header">
+        <h3>Lista de Productos</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-dark">
+            <tr style="color: yellow;">
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Foto</th>
+            </tr>
+            {{#if prod}}
+              {{#each prod}}
+                <tr>
+                  <td>{{this.name}}</td>
+                  <td>{{this.price}}</td>
+                  <td><IMG SRC="{{this.thumnail}}"ALIGN=MIDDLE WIDTH=192 HEIGHT=92 ALT="AQUI VA UNA IMAGEN"></td>
+                  <td>
+                    <form
+                          class='form'
+                          action='/addProdToCart'
+                          method='post'
+                          role='form'
+                          autocomplete='off'
+                        >
+                      <div class='form-group'><input id='id' name='id' class='form-control' type='hidden' value="{{this._id}}" required /> </div>
+                      <div class='form-group'>
+                        <input class='btn btn-primary add-button' type='submit' value='add' />  
+                      </div>
+                    </form>
+                  </td>
+                </tr>
+              {{/each}}
+            {{else}}
+              <h2>No hay productos</h2>
+            {{/if}}
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- <td><form class='form'
+                            action='/addProdToCart'
+                            method='post'
+                          > <input class="btn btn-success my5" name ="{{this._id}}" type="submit" value = "agregar"/></form></td> --}}
+
+
+{{!-- <div class="container text-center my-3">
+    <div class="jumbotron" style="background-color: green;color: white;">
+        <h1>USER OK LOGIN!</h1>
+        <h2><i>Bienvenido {{datos.nombre}}</i></h2>
+        <br>
+        <h3>dirección: {{datos.direccion}}</h3>
+        <h4>visitas: {{contador}}</h4>
+        <button class="btn btn-danger my-5" onclick="location.href='/logout'">LOGOUT</button>
+    </div>
+</div>
+
+{contador, datos: {nombre, direccion}} --}}
